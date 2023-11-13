@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const resultDiv = document.getElementById('result');
 
     searchButton.addEventListener('click', function () {
-        const searchTerm = searchInput.value.trim();
+        const searchTerm = searchInput.value.trim().toLowerCase();
 
         if (searchTerm !== '') {
             // Make AJAX request
@@ -35,23 +35,15 @@ document.addEventListener('DOMContentLoaded', function () {
         if (data.error) {
             resultDiv.innerHTML = `<p>${data.error}</p>`;
         } else if (data.superheroes.length > 0) {
-            // Display the list or a single superhero
-            if (data.superheroes.length === 1) {
-                const superhero = data.superheroes[0];
-                resultDiv.innerHTML = `
-                    <h3>${superhero.alias}</h3>
-                    <h4>${superhero.name}</h4>
-                    <p>${superhero.biography}</p>
-                `;
-            } else {
-                const list = document.createElement('ul');
-                data.superheroes.forEach(superhero => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = superhero.alias;
-                    list.appendChild(listItem);
-                });
-                resultDiv.appendChild(list);
-            }
+            const list = document.createElement('ul');
+
+            data.superheroes.forEach(superhero => {
+                const listItem = document.createElement('li');
+                listItem.textContent = superhero.alias;
+                list.appendChild(listItem);
+            });
+
+            resultDiv.appendChild(list);
         } else {
             resultDiv.innerHTML = '<p>Superhero not found</p>';
         }

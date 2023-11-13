@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title><superheroes class="php"></superheroes> Search</title>
+    <title>Avengers Character Search</title>
 </head>
 <body>
+    <header>
+        <h1>AVENGERS CHARACTER SEARCH</h1>
+    </header>
+
     <div class="container">
-        <label for="searchInput">Enter superhero name or alias:</label>
-        <input type="text" id="searchInput" placeholder="Type here...">
-        <button id="searchBtn">Search</button>
+        <div class="search-section">
+            <label for="searchInput">Search by Full Name or Alias:</label>
+            <input type="text" id="searchInput" placeholder="e.g., Captain America or Steve Rogers">
+            <button id="searchButton">Search</button>
+        </div>
+
         <div id="result">
-            <h3 id="alias"></h3>
-            <h4 id="name"></h4>
-            <p id="biography"></p>
+            <!-- Result list will be appended here dynamically -->
         </div>
     </div>
 
