@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (searchTerm !== '') {
             // Make AJAX request
             const xhr = new XMLHttpRequest();
-            xhr.open('GET', `superheroes.php?query=${encodeURIComponent(searchTerm)}`, true);
+            xhr.open('GET', `http://localhost/info2180-lab4/superheroes.php?query=${encodeURIComponent(searchTerm)}`, true);
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
