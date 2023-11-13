@@ -27,12 +27,12 @@ header {
 
 label {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 input, button {
-    width: calc(50% - 5px);
-    padding: 10px;
+    width: calc(20% - 5px);
+    padding: 20px;
     margin-bottom: 10px;
     display: inline-block;
 }
@@ -52,9 +52,20 @@ button {
 button:hover {
     background-color: #e60000;
 }
+.separator {
+    border: 1px solid #ddd; /* Adjust the color as needed */
+    margin: 20px 0;
 
 #result {
     margin-top: 20px;
+}
+.result-header {
+    margin-top: 20px;
+}
+
+.result-header p {
+    font-weight: bold;
+    color: #333;
 }
 
 ul {
