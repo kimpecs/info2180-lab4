@@ -64,24 +64,16 @@ $superheroes = [
 ];
 
 
-echo json_encode(['superheroes' => $superheroes]);
+if (isset($_GET['query'])) {
+    $searchTerm = strtolower($_GET['query']);
+    
+    $filteredSuperheroes = array_filter($superheroes, function ($superhero) use ($searchTerm) {
+        return strpos(strtolower($superhero['name']), $searchTerm) !== false ||
+               strpos(strtolower($superhero['alias']), $searchTerm) !== false;
+    });
 
+    echo json_encode(['superheroes' => array_values($filteredSuperheroes)]);
+} else {
+    echo json_encode(['superheroes' => $superheroes]);
+}
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Superheroes List</title>
-</head>
-<body>
-
-    <ul>
-    <?php foreach ($superheroes as $superhero): ?>
-        <li><?= $superhero['alias']; ?></li>
-    <?php endforeach; ?>
-    </ul>
-
-</body>
-</html>
