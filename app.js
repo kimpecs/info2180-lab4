@@ -30,22 +30,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function displayResult(data) {
-        resultDiv.innerHTML = ''; 
-
+        const superheroesList = document.getElementById('superheroesList');
+        superheroesList.innerHTML = ''; 
+    
         if (data.error) {
-            resultDiv.innerHTML = `<p>${data.error}</p>`;
+            superheroesList.innerHTML = `<p>${data.error}</p>`;
         } else if (data.superheroes.length > 0) {
-            const list = document.createElement('ul');
-
             data.superheroes.forEach(superhero => {
                 const listItem = document.createElement('li');
                 listItem.textContent = superhero.alias;
-                list.appendChild(listItem);
+                superheroesList.appendChild(listItem);
             });
-
-            resultDiv.appendChild(list);
         } else {
-            resultDiv.innerHTML = '<p>Superhero not found</p>';
+            superheroesList.innerHTML = '<p>Superhero not found</p>';
         }
     }
+    
 });

@@ -63,10 +63,12 @@ $superheroes = [
   ], 
 ];
 
-?>
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+echo json_encode(['superheroes' => $superheroes]);
+// ?>
+
+// <ul>
+// <?php foreach ($superheroes as $superhero): ?>
+//   <li><?= $superhero['alias']; ?></li>
+// <?php endforeach; ?>
+// </ul>

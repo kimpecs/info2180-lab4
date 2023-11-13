@@ -15,10 +15,8 @@ header {
 .container {
    
     margin: 20px auto;
-    background-color: #fff;
+    background-color: #f4f4f4;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .search-section {
@@ -53,9 +51,9 @@ button:hover {
     background-color: #e60000;
 }
 .separator {
-    border: 1px solid #ddd; /* Adjust the color as needed */
+    border: 1px solid #dbdbdb; 
     margin: 20px 0;
-
+}
 #result {
     margin-top: 20px;
 }
@@ -81,5 +79,20 @@ li {
 }
 
 p {
+    color: red;
+}
+#superheroesList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#superheroesList li {
+    padding: 10px;
+    background-color: #eaeaea;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+#superheroesList p {
     color: red;
 }
