@@ -1,51 +1,43 @@
 document.addEventListener('DOMContentLoaded', function () {
     const searchButton = document.getElementById('searchButton');
     const searchInput = document.getElementById('searchInput');
-    const resultDiv = document.getElementById('result');
+    const superheroesList = document.getElementById('superheroesList');
 
     searchButton.addEventListener('click', function () {
         const searchTerm = searchInput.value.trim().toLowerCase();
 
         if (searchTerm !== '') {
-            // Make AJAX request
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', `http://localhost/info2180-lab4/superheroes.php?query=${encodeURIComponent(searchTerm)}`, true);
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        const response = JSON.parse(xhr.responseText);
-                        displayResult(response);
-                    } else {
-                        displayResult({ error: 'An error occurred while fetching data.' });
+            fetch(`http://localhost/info2180-lab4/superheroes.php?query=${encodeURIComponent(searchTerm)}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('An error occurred while fetching data.');
                     }
-                }
-            };
-
-            xhr.send();
+                    return response.json();
+                })
+                .then(data => {
+                    displayResult(data);
+                })
+                .catch(error => {
+                    displayResult({ error: error.message });
+                });
         } else {
-            // If search input is empty, display the original list
-            displayResult({ superheroes: originalSuperheroes });
+            displayResult({ superheroes });
         }
     });
 
     function displayResult(data) {
-        resultDiv.innerHTML = ''; // Clear previous results
+        superheroesList.innerHTML = '';
 
         if (data.error) {
-            resultDiv.innerHTML = `<p>${data.error}</p>`;
-        } else if (data.superheroes.length > 0) {
-            const list = document.createElement('ul');
-
+            superheroesList.innerHTML = `<p>${data.error}</p>`;
+        } else if (data.superheroes && data.superheroes.length > 0) {
             data.superheroes.forEach(superhero => {
                 const listItem = document.createElement('li');
                 listItem.textContent = superhero.alias;
-                list.appendChild(listItem);
+                superheroesList.appendChild(listItem);
             });
-
-            resultDiv.appendChild(list);
         } else {
-            resultDiv.innerHTML = '<p>Superhero not found</p>';
+            superheroesList.innerHTML = '<p>Superhero not found</p>';
         }
     }
 });
