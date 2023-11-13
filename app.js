@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded', function () {
             xhr.send();
         } else {
             // If search input is empty, display the original list
-            displayResult({ superheroes: originalSuperheroes });
+            displayResult({ superheroes:superheroes });
         }
     });
 
     function displayResult(data) {
-        resultDiv.innerHTML = ''; // Clear previous results
+        resultDiv.innerHTML = ''; 
 
         if (data.error) {
             resultDiv.innerHTML = `<p>${data.error}</p>`;
